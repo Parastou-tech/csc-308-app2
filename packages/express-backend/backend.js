@@ -86,14 +86,15 @@ app.get("/users/:id", (req, res) => {
   });
 
   const addUser = (user) => {
-    users["users_list"].push(user);
+    users.users_list.push(user);
     return user;
   };
   
   app.post("/users", (req, res) => {
     const userToAdd = req.body;
+    userToAdd.id = Math.random().toString(36).substring(2,9);
     addUser(userToAdd);
-    res.send();
+    res.status(201).send(userToAdd);
   });
 
   app.delete("/users/:id", (req, res)=>{
