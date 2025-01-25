@@ -49,8 +49,9 @@ const findUserByName = (name) => {
   );
 };
 
-const findUserById = (id) =>
-    users["users_list"].find((user) => user["id"] === id);
+const findUserById = (id) =>{
+  return users["users_list"].findIndex((user) => user["id"] === id);
+};
 
 const findUserByJob = (job) => 
     users["users_list"].find((user)=> user["job"]===job);
