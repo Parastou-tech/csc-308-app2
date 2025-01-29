@@ -18,6 +18,20 @@ class StockPortfolio{
         }
     }
 
+    sell(ticker, shares){
+        if (!ticker || shares <= 0){
+            throw new Error('Invalid ticker symbol or number of shares.');
+        }
+        if (!this.portfolio[ticker] || shares > this.portfolio[ticker]){
+            throw new Error('Not possible to sell this number of shares');
+
+        } 
+        this.portfolio[ticker] -= shares;
+        if(this.portfolio[ticker] === 0){
+            delete this.portfolio[ticker];
+        }
+    }
+
     getShares(ticker){
         if(!ticker){
             throw new Error('Invalid ticker symbol.');
@@ -28,6 +42,11 @@ class StockPortfolio{
             return 0;
         }
     }
+
+    getCompanyCount(){
+        return Object.keys(this.portfolio).length;
+    }
+    
 
     
 }
