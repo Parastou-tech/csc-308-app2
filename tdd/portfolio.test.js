@@ -74,6 +74,6 @@ Although it was annoying at first, I was able to see why it is the way to go for
 problems you haven't quite figured out how you're going to solve yet. It also made
 sense to definitevly have a way of testing your code before you even write it, 
 because if you can't test it you won't know if its completely correct. On the other
-hand I also see why people don't commonly follow this structurure because seeing the
+hand I also see why people don't commonly follow this structure because seeing the
 tests fail first before even writing the code for it was annoying. 
 */
