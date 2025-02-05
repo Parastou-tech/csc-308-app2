@@ -1,6 +1,19 @@
 // backend.js
+import mongoose from 'mongoose';
 import express from "express";
 import cors from "cors";
+
+mongoose.connect('mongodb://127.0.0.1:27017/users', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB!');
+}).on('error', (error) => {
+  console.error('MongoDB connection error:', error);
+});
+
 
 const app = express();
 const port = 8000;
@@ -42,6 +55,16 @@ app.use(cors());
 app.get("/", (req, res) => {
     res.send("Hello World!");
   });
+
+  import {
+    findAllUsers,
+    findUsersByName,
+    findUsersByJob,
+    findUsersByNameAndJob, 
+    findUserById,
+    createUser,
+    deleteUserById,
+  } from './user-services.js';
 
 const findUserByName = (name) => {
   return users["users_list"].filter(
@@ -93,7 +116,7 @@ app.get("/users/:id", (req, res) => {
   
   app.post("/users", (req, res) => {
     const userToAdd = req.body;
-    userToAdd.id = Math.random().toString(36).substring(2,9);
+    userToAdd._id = Math.random().toString(36).substring(2,9);
     addUser(userToAdd);
     res.status(201).send(userToAdd);
   });
